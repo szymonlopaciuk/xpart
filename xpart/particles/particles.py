@@ -1112,8 +1112,8 @@ void increment_at_element(LocalParticle* part0){
 void increment_at_turn(LocalParticle* part0, int flag_reset_s){
 
     //start_per_particle_block (part0->part)
-	LocalParticle_add_to_at_turn(part, 1);
-	LocalParticle_set_at_element(part, 0);
+    LocalParticle_add_to_at_turn(part, 1);
+    LocalParticle_set_at_element(part, 0);
     if (flag_reset_s>0){
         LocalParticle_set_s(part, 0.);
     }
@@ -1123,7 +1123,7 @@ void increment_at_turn(LocalParticle* part0, int flag_reset_s){
 
 // check_is_active has different implementation on CPU and GPU
 
-#define CPUIMPLEM //only_for_context cpu_serial cpu_openmp
+#define CPUIMPLEM //only_for_context cpu_serial
 
 #ifdef CPUIMPLEM
 
@@ -1137,9 +1137,9 @@ int64_t check_is_active(LocalParticle* part) {
             part->_num_active_particles--;
             part->_num_lost_particles++;
         }
-	else{
-	    ipart++;
-	}
+        else {
+            ipart++;
+        }
     }
 
     if (part->_num_active_particles==0){
