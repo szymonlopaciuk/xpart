@@ -854,8 +854,10 @@ def gen_local_particle_api(mode='no_local_copy'):
                                     LocalParticle* dest,
                                     int64_t id){''')
     for tt, vv in size_vars + scalar_vars:
-        src_lines.append(
-                f'  dest->{vv} = ParticlesData_get_'+vv+'(source);')
+        if vv == '_particles_ptr':
+            src_lines.append(f'  dest->{vv} = (uint64_t)source;')
+        else:
+            src_lines.append(f'  dest->{vv} = ParticlesData_get_{vv}(source);')
     for tt, vv in per_particle_vars:
         src_lines.append(
                 f'  dest->{vv} = ParticlesData_getp1_'+vv+'(source, 0);')
